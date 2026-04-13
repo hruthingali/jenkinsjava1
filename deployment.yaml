@@ -14,8 +14,10 @@ spec:
     spec:
       containers:
       - name: java-web-container
-        # Replace 'your-username' with your actual Docker Hub username
-        image: your-username/my-java-app:latest 
+        # The placeholder that Jenkins will replace
+        image: DOCKER_USER_PLACEHOLDER/my-java-app:latest 
         imagePullPolicy: Always 
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
