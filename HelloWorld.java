@@ -1,6 +1,5 @@
-public class HelloWorld {
-    public static void main(String[] args) {
-        // Print Hello, World! to the console
-        System.out.println("Hello, World! welcome to jenkins");
-    }
-}
+FROM eclipse-temurin:17-jdk-focal
+WORKDIR /app
+COPY HelloWorld.java .
+RUN javac HelloWorld.java
+CMD ["java", "HelloWorld"]
