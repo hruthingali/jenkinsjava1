@@ -1,14 +1,20 @@
-// This is the CLASS. 
-// The name "HelloWorld" must match your filename "HelloWorld.java"
-public class HelloWorld {
+import com.sun.net.httpserver.HttpServer;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
 
-    // This is the MAIN method. 
-    // This is the entry point where the program starts running.
-    public static void main(String[] args) {
-        
-        // This prints text to the console
-        System.out.println("---------------------------------------");
-        System.out.println("Success! The Java class is running.");
-        System.out.println("---------------------------------------");
+public class HelloWorld {
+    public static void main(String[] args) throws Exception {
+        // Create a server on port 8080
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        server.createContext("/", (exchange) -> {
+            String response = "<h1>Hello from the Browser!</h1><p>Jenkins + Docker is working.</p>";
+            exchange.sendResponseHeaders(200, response.length());
+            OutputStream os = exchange.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        });
+        System.out.println("Server started on port 8080...");
+        server.setExecutor(null);
+        server.start();
     }
 }
