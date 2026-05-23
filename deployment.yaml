@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-web-container
-          image: hruthingali/my-java-app:latest
+          image: hruthingali/my-java-app:19
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
